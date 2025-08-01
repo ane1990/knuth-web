@@ -46,6 +46,8 @@ The deployment target is:
 The repository contains:
 - `index.html` - Main website page
 - `knuth.html` - Additional content page
+- `css/styles.css` - Shared CSS styles
+- `js/scripts.js` - Shared JavaScript functionality
 - `.github/workflows/deploy.yml` - GitHub Actions deployment workflow
 - `.gitignore` - Git ignore rules for web projects
 
@@ -58,6 +60,14 @@ To work on this project locally:
 3. Test locally by opening the HTML files in a browser
 4. Commit and push to the `main` branch
 5. The GitHub Action will automatically deploy your changes
+
+### Code Organization
+
+The project follows a modular structure for better maintainability:
+- **CSS**: All styles are centralized in `css/styles.css`
+- **JavaScript**: All interactive functionality is in `js/scripts.js`
+- **HTML**: Pages reference external CSS and JS files
+- **Benefits**: Easier maintenance, better caching, and cleaner code structure
 
 ### Troubleshooting
 
