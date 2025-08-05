@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku Solver - PyScript</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td {
+            border: 1px solid #888;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+        }
+        input {
+            width: 38px;
+            height: 38px;
+            text-align: center;
+            font-size: 18px;
+            border: none;
+            outline: none;
+        }
+        .bold-border {
+            border: 2px solid black !important;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        #controls {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🧩 Sudoku Solver - PyScript</h2>
+
+<table id="sudoku">
+    <tbody></tbody>
+</table>
+
+<div id="controls">
+    <button onclick="solveSudoku()">Solve</button>
+    <button onclick="resetSudoku()">Reset</button>
+</div>
+
+<py-script type="py">
+from js import document, console, window
+
+def is_valid(grid, row, col, num):
+    for i in range(9):
+        if grid[row][i] == num or grid[i][col] == num:
+            return False
+    start_row, start_col = 3*(row//3), 3*(col//3)
+    for i in range(3):
+        for j in range(3):
+            if grid[start_row+i][start_col+j] == num:
+                return False
+    return True
+
+def solve(grid):
+    for row in range(9):
+        for col in range(9):
+            if grid[row][col] == 0:
+                for num in range(1, 10):
+                    if is_valid(grid, row, col, num):
+                        grid[row][col] = num
+                        if solve(grid):
+                            return True
+                        grid[row][col] = 0
+                return False
+    return True
+
+def solveSudoku(*args):
+    grid = []
+    for i in range(9):
+        row = []
+        for j in range(9):
+            val = document.getElementById(f'cell-{i}-{j}').value
+            row.append(int(val) if val.strip().isdigit() else 0)
+        grid.append(row)
+
+    if solve(grid):
+        for i in range(9):
+            for j in range(9):
+                input_cell = document.getElementById(f'cell-{i}-{j}')
+                input_cell.value = str(grid[i][j])
+                input_cell.style.color = 'blue'
+    else:
+        console.log("No solution found")
+        window.alert("❌ No solution found!")
+
+def resetSudoku(*args):
+    initial_values = {
+        (0,0):3, (0,3):9, (0,5):5, (0,8):4,
+        (1,1):2, (1,7):9,
+        (2,2):5, (2,4):7, (2,6):8,
+        (3,3):8, (3,5):6,
+        (4,2):9, (4,6):5,
+        (5,3):4, (5,5):7,
+        (6,2):8, (6,4):1, (6,6):6,
+        (7,1):4, (7,7):1,
+        (8,0):9, (8,3):5, (8,5):2, (8,8):3,
+    }
+
+    for i in range(9):
+        for j in range(9):
+            input_cell = document.getElementById(f'cell-{i}-{j}')
+            if (i,j) in initial_values:
+                input_cell.value = str(initial_values[(i,j)])
+                input_cell.disabled = True
+                input_cell.style.color = 'black'
+            else:
+                input_cell.value = ''
+                input_cell.disabled = False
+                input_cell.style.color = 'black'
+</py-script>
+
+<script>
+function createSudokuGrid() {
+    const table = document.querySelector("#sudoku tbody");
+    for (let i = 0; i < 9; i++) {
+        const row = document.createElement("tr");
+        for (let j = 0; j < 9; j++) {
+            const cell = document.createElement("td");
+            if (i % 3 === 0) cell.classList.add("bold-border");
+            if (j % 3 === 0) cell.classList.add("bold-border");
+
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("maxlength", "1");
+            input.setAttribute("id", `cell-${i}-${j}`);
+            input.addEventListener("input", () => {
+                if (!/^[1-9]?$/.test(input.value)) input.value = '';
+            });
+
+            cell.appendChild(input);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+    resetSudoku();
+}
+
+document.addEventListener("DOMContentLoaded", createSudokuGrid);
+</script>
+
+</body>
+</html>
