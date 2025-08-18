@@ -83,6 +83,7 @@ async function build() {
   await fs.copy(path.join(rootDir, 'css'), path.join(distDir, 'css')).catch(() => {});
   await fs.copy(path.join(rootDir, 'js'), path.join(distDir, 'js')).catch(() => {});
   await fs.copy(path.join(rootDir, 'robots.txt'), path.join(distDir, 'robots.txt')).catch(() => {});
+  await fs.copy(path.join(rootDir, 'favicon.ico'), path.join(distDir, 'favicon.ico')).catch(() => {});
   // sitemap.xml will be generated dynamically after pages are built
 
   const mdFiles = (await fs.readdir(contentDir)).filter((f) => f.endsWith('.md'));
