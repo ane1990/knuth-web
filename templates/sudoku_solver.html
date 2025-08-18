@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sudoku Solver - Interactive Online Puzzle Game & Algorithm Demo</title>
   <meta name="description" content="Interactive Sudoku solver with algorithm demonstration.">
+  <link rel="stylesheet" href="css/styles.css">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; margin: 20px; }
-    h1 { margin-bottom: 10px; }
-    table { border-collapse: collapse; margin: auto; }
+    .sudoku-wrapper { text-align: center; padding: 40px 0; }
+    table { border-collapse: collapse; margin: 20px auto; }
     td { border: 1px solid #000; padding: 0; }
     input { width: 40px; height: 40px; font-size: 20px; text-align: center; border: none; outline: none; }
     input:disabled { background-color: #ddd; font-weight: bold; }
@@ -23,12 +23,33 @@
   </style>
 </head>
 <body>
-  <h1>🧩 Sudoku Solver</h1>
-  <table id="sudoku-board"></table>
-  <div class="button-container">
-    <button onclick="solveSudoku()">Solve</button>
-    <button onclick="resetSudoku()">Reset</button>
+  <div class="stars" id="stars"></div>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">🧩 Sudoku Solver</h1>
+      <p class="subtitle">Interactive backtracking demo</p>
+      <p style="margin-top: 20px; font-size: 1rem; color: #b8b8d1;">
+        <a href="/" style="color: #ffd700; text-decoration: none; border-bottom: 1px solid #ffd700;">← Back to Server Home</a>
+      </p>
+    </header>
+    <main class="content">
+      <section class="tribute-section sudoku-wrapper">
+        <table id="sudoku-board"></table>
+        <div class="button-container">
+          <button onclick="solveSudoku()">Solve</button>
+          <button onclick="resetSudoku()">Reset</button>
+        </div>
+      </section>
+    </main>
+    <footer class="signature">
+      <p class="signature-line">Enjoy solving!</p>
+    </footer>
   </div>
+  <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
+  <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
+  <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
+  <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
+  <script defer src="js/scripts.js"></script>
   <script defer src="js/sudoku.js"></script>
   <script>
     window.__SUDOKU_INITIAL__ = {{sudoku_initial}};

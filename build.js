@@ -100,6 +100,20 @@ async function build() {
         content: ''
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
+    } else if (template === 'index') {
+      const { aboutHtml, achievementsHtml, quoteHtml } = renderIndexSections(bodyContent);
+      const html = replacePlaceholders(tpl, {
+        about_message_html: aboutHtml,
+        achievements_cards_html: achievementsHtml,
+        quote_html: quoteHtml
+      });
+      await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
+    } else if (template === 'knuth') {
+      const structured = renderKnuthSections(bodyContent);
+      const html = replacePlaceholders(tpl, {
+        content: structured
+      });
+      await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else {
       const rendered = marked.parse(bodyContent || '');
       const html = replacePlaceholders(tpl, {
@@ -169,5 +183,145 @@ async function listHtmlFiles(dir) {
     })
   );
   return files.flat();
+}
+
+function renderIndexSections(markdown) {
+  const lines = markdown.split(/\r?\n/);
+  const text = markdown;
+  function extractSection(title) {
+    const pattern = new RegExp(`^##\\s*${title}\\s*$`, 'mi');
+    const match = text.match(pattern);
+    if (!match) return '';
+    const start = match.index + match[0].length;
+    // find next heading
+    const rest = text.slice(start);
+    const nextMatch = rest.match(/^##\s+.*$/m);
+    const body = nextMatch ? rest.slice(0, nextMatch.index) : rest;
+    return body.trim();
+  }
+
+  const aboutMd = extractSection('About This Server');
+  const achievementsMd = extractSection('Achievements');
+  // Quote: first blockquote block
+  const quoteBlock = (text.match(/(^>.*(?:\n>.*)*)/m) || [null, ''])[1];
+
+  const aboutHtml = marked.parse(aboutMd || '');
+
+  // Build achievements cards from list items in achievementsMd
+  const achievementLines = (achievementsMd || '')
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith('- '));
+  const achievementsHtml = achievementLines
+    .map((item) => {
+      const content = item.replace(/^-\s*/, '');
+      // Try to split **Title**: description
+      const m = content.match(/^\*\*(.*?)\*\*\s*:?\s*(.*)$/);
+      let title = '';
+      let desc = content;
+      if (m) {
+        title = m[1];
+        desc = m[2];
+      }
+      const descHtml = marked.parse(desc || '');
+      return `
+        <div class="achievement">
+          <div class="achievement-title">${title || ''}</div>
+          <div>${descHtml}</div>
+        </div>`;
+    })
+    .join('\n');
+
+  let quoteHtml = '';
+  if (quoteBlock) {
+    const qLines = quoteBlock
+      .split(/\r?\n/)
+      .map((l) => l.replace(/^>\s?/, '').trim())
+      .filter((l) => l.length > 0);
+    const quoteText = qLines[0] || '';
+    const caption = qLines.slice(1).join(' ') || '';
+    quoteHtml = `<blockquote class="quote">${quoteText}<br><small>${caption}</small></blockquote>`;
+  }
+
+  return { aboutHtml, achievementsHtml, quoteHtml };
+}
+
+function renderKnuthSections(markdown) {
+  const text = markdown;
+  function sectionMd(title) {
+    const pattern = new RegExp(`^##\\s*${title}\\s*$`, 'mi');
+    const match = text.match(pattern);
+    if (!match) return '';
+    const start = match.index + match[0].length;
+    const rest = text.slice(start);
+    const nextMatch = rest.match(/^##\s+.*$/m);
+    const body = nextMatch ? rest.slice(0, nextMatch.index) : rest;
+    return body.trim();
+  }
+
+  const lifetimeMd = sectionMd('A Lifetime of Dedication');
+  const achievementsMd = sectionMd('Monumental Achievements');
+  const beyondMd = sectionMd("Beyond Code: A Teacher's Heart");
+  const legacyMd = sectionMd('The Legacy Continues');
+  const quoteBlock = (text.match(/(^>.*(?:\n>.*)*)/m) || [null, ''])[1];
+
+  const lifetimeHtml = lifetimeMd ? `
+    <section class="tribute-section">
+      <h2 class="section-title">A Lifetime of Dedication</h2>
+      <div class="message">${marked.parse(lifetimeMd)}</div>
+    </section>` : '';
+
+  const achievementLines = (achievementsMd || '')
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.startsWith('- '));
+  const achievementsCards = achievementLines
+    .map((item) => {
+      const content = item.replace(/^-\s*/, '');
+      const m = content.match(/^\*\*(.*?)\*\*\s*:?\s*(.*)$/);
+      let title = '';
+      let desc = content;
+      if (m) {
+        title = m[1];
+        desc = m[2];
+      }
+      const descHtml = marked.parse(desc || '');
+      return `
+        <div class="achievement">
+          <div class="achievement-title">${title || ''}</div>
+          <div>${descHtml}</div>
+        </div>`;
+    })
+    .join('\n');
+  const achievementsHtml = achievementsCards ? `
+    <section class="tribute-section">
+      <h2 class="section-title">Monumental Achievements</h2>
+      <div class="achievements">${achievementsCards}</div>
+    </section>` : '';
+
+  let quoteHtml = '';
+  if (quoteBlock) {
+    const qLines = quoteBlock
+      .split(/\r?\n/)
+      .map((l) => l.replace(/^>\s?/, '').trim())
+      .filter((l) => l.length > 0);
+    const quoteText = qLines[0] || '';
+    const caption = qLines.slice(1).join(' ');
+    quoteHtml = `<blockquote class="quote">${quoteText}${caption ? `<br><small>${caption}</small>` : ''}</blockquote>`;
+  }
+
+  const beyondHtml = beyondMd ? `
+    <section class="tribute-section">
+      <h2 class="section-title">Beyond Code: A Teacher's Heart</h2>
+      <div class="message">${marked.parse(beyondMd)}</div>
+    </section>` : '';
+
+  const legacyHtml = legacyMd ? `
+    <section class="tribute-section">
+      <h2 class="section-title">The Legacy Continues</h2>
+      <div class="message">${marked.parse(legacyMd)}</div>
+    </section>` : '';
+
+  return [lifetimeHtml, achievementsHtml, quoteHtml, beyondHtml, legacyHtml].join('\n');
 }
 
