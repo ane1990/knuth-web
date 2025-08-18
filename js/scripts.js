@@ -45,6 +45,8 @@ function revealOnScroll() {
 function addMouseInteraction() {
     const container = document.querySelector('.container');
     
+    if (!container) return;
+
     document.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth) - 0.5;
         const y = (e.clientY / window.innerHeight) - 0.5;

@@ -30,7 +30,7 @@ Before the automated deployment can work, you need to set up the following:
 If you need to deploy manually, you can use the following command:
 
 ```bash
-scp -i mykey-knuth -P 22 -r ./* alberto@knuth-it.duckdns.org:/var/www/html/content/
+scp -i mykey-knuth -P 22 -r dist/* alberto@knuth-it.duckdns.org:/var/www/html/content/
 ```
 
 ### Server Configuration
@@ -44,10 +44,13 @@ The deployment target is:
 ### File Structure
 
 The repository contains:
-- `index.html` - Main website page
-- `knuth.html` - Additional content page
+- `content/` - Markdown sources. Each `<name>.md` becomes `dist/<name>.html`.
+- `templates/` - HTML templates. Use `{{content}}` in templates to place rendered Markdown. `sudoku_solver.html` uses `{{sudoku_initial}}`.
 - `css/styles.css` - Shared CSS styles
 - `js/scripts.js` - Shared JavaScript functionality
+- `js/sudoku.js` - Sudoku logic (separate from content)
+- `build.js` - Static site generator
+- `package.json` - Build dependencies and scripts
 - `.github/workflows/deploy.yml` - GitHub Actions deployment workflow
 - `.gitignore` - Git ignore rules for web projects
 
@@ -56,17 +59,35 @@ The repository contains:
 To work on this project locally:
 
 1. Clone the repository
-2. Make your changes
-3. Test locally by opening the HTML files in a browser
-4. Commit and push to the `main` branch
-5. The GitHub Action will automatically deploy your changes
+2. Install dependencies:
+   ```bash
+   npm install --no-audit --no-fund
+   ```
+3. Edit or add Markdown in `content/` (e.g. `content/index.md`)
+4. At the very first row, declare the template using a simple table:
+   ```
+   | template | index |
+   ```
+   Available templates: `index`, `knuth`, `sudoku_solver` (add more by creating `.html` files in `templates/`).
+5. For the Sudoku page, put either a JSON object of fixed cells or a 9-line grid after the template row. Example JSON:
+   ```
+   | template | sudoku_solver |
+
+   { "0,0": 5, "1,2": 7 }
+   ```
+6. Build the site:
+   ```bash
+   npm run build
+   ```
+7. Open files from `dist/` in a browser to test locally
+8. Commit and push to the `main` branch to trigger deployment
 
 ### Code Organization
 
 The project follows a modular structure for better maintainability:
 - **CSS**: All styles are centralized in `css/styles.css`
 - **JavaScript**: All interactive functionality is in `js/scripts.js`
-- **HTML**: Pages reference external CSS and JS files
+- **HTML**: Pages are generated from Markdown using templates in `templates/`
 - **Benefits**: Easier maintenance, better caching, and cleaner code structure
 
 ### Troubleshooting
