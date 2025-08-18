@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 env:
-  BASE_URL: '${{ var.BASE_URL }}'
+  BASE_URL: '${{ vars.BASE_URL }}'
 jobs:
   deploy:
     runs-on: ubuntu-latest
