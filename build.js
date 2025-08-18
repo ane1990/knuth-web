@@ -19,26 +19,36 @@ function replacePlaceholders(template, variables) {
   });
 }
 
-function parseTemplateRow(lines) {
-  // Accept forms like:
-  // | template | index |
-  // template | index
-  // | key | value | with optional separator on next line
-  if (!lines.length) return { template: null, startIndex: 0 };
-  const first = lines[0].trim();
-  if (!first) return { template: null, startIndex: 0 };
-  let row = first;
-  if (row.startsWith('|')) row = row.slice(1);
-  if (row.endsWith('|')) row = row.slice(0, -1);
-  const parts = row.split('|').map((s) => s.trim());
-  if (parts.length < 2) return { template: null, startIndex: 0 };
-  const key = parts[0].toLowerCase();
-  const value = parts[1];
-  if (key !== 'template' || !value) return { template: null, startIndex: 0 };
-  // skip optional separator row if present next
-  let startIndex = 1;
-  if (lines[1] && /^\s*\|?\s*-+\s*\|\s*-+/.test(lines[1])) startIndex = 2;
-  return { template: value, startIndex };
+function parseHeaderTable(lines) {
+  // Parses consecutive key|value rows at the start of the file
+  // Example:
+  // | template | blog-post |
+  // | title | My Title |
+  // | description | ... |
+  // (optional) separator rows containing dashes are skipped
+  const meta = {};
+  let index = 0;
+  function isSeparator(l) {
+    return /\|?\s*-+\s*\|\s*-+/.test(l.trim());
+  }
+  while (index < lines.length) {
+    const raw = lines[index].trim();
+    if (!raw) { index++; break; }
+    if (isSeparator(raw)) { index++; continue; }
+    let row = raw;
+    const hasPipe = row.includes('|');
+    if (!hasPipe) break;
+    if (row.startsWith('|')) row = row.slice(1);
+    if (row.endsWith('|')) row = row.slice(0, -1);
+    const parts = row.split('|').map((s) => s.trim());
+    if (parts.length < 2) break;
+    const key = parts[0].toLowerCase();
+    const value = parts.slice(1).join(' | ').trim();
+    meta[key] = value;
+    index++;
+  }
+  const template = meta.template || null;
+  return { template, meta, startIndex: index };
 }
 
 function parseSudokuInitial(content) {
@@ -81,7 +91,7 @@ async function build() {
     const outName = name === 'index' ? 'index' : name;
     const raw = await fs.readFile(path.join(contentDir, file), 'utf8');
     const lines = raw.split(/\r?\n/);
-    const { template, startIndex } = parseTemplateRow(lines);
+    const { template, meta, startIndex } = parseHeaderTable(lines);
     if (!template) {
       throw new Error(`Missing template declaration in first row for ${file}. Expected "| template | name |"`);
     }
@@ -106,6 +116,21 @@ async function build() {
         about_message_html: aboutHtml,
         achievements_cards_html: achievementsHtml,
         quote_html: quoteHtml
+      });
+      await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
+    } else if (template === 'blog-post') {
+      const title = meta.title || '';
+      const description = meta.description || '';
+      const keywords = meta.keywords || '';
+      const summary = meta.summary || '';
+      const articleHtml = marked.parse(bodyContent || '');
+      const summaryHtml = marked.parse(summary || '');
+      const html = replacePlaceholders(tpl, {
+        page_title: escapeHtml(title),
+        meta_description: escapeHtml(description),
+        meta_keywords: escapeHtml(keywords),
+        summary_html: summaryHtml,
+        article_html: articleHtml
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else if (template === 'knuth') {
@@ -323,5 +348,14 @@ function renderKnuthSections(markdown) {
     </section>` : '';
 
   return [lifetimeHtml, achievementsHtml, quoteHtml, beyondHtml, legacyHtml].join('\n');
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 }
 
