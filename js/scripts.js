@@ -93,6 +93,34 @@ function addAchievementInteractions() {
     });
 }
 
+/* --------------  DATE MESSAGE  -------------- */
+function injectTodayMessage() {
+    
+    // build the message container (only once)
+    let messageDiv = document.querySelector('.message');
+    if (!messageDiv) {
+        messageDiv = document.createElement('div');
+        messageDiv.className = 'message';
+        document.body.insertAdjacentElement('afterbegin', messageDiv);
+    }
+
+    fetch('/api/node/v1/today')
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.json();
+        })
+        .then(data => {
+            const dateStr = (data && data.status === 'OK' && data.date)
+                ? data.date
+                : "N.A.";
+            messageDiv.innerHTML = `<p>Today is ${dateStr}</p>`;
+        })
+        .catch(() => {
+            // fallback 2 – network / JSON error
+            messageDiv.innerHTML = `<p>Today is ${todayLocal}</p>`;
+        });
+}
+
 // Initialize everything when page loads
 function initializePage() {
     createStars();
@@ -100,6 +128,7 @@ function initializePage() {
     addMouseInteraction();
     animateFloatingSymbols();
     addAchievementInteractions();
+    injectTodayMessage();
     
     // Add a gentle fade-in to the whole page
     document.body.style.opacity = '0';
