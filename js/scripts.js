@@ -95,14 +95,11 @@ function addAchievementInteractions() {
 
 /* --------------  DATE MESSAGE  -------------- */
 function injectTodayMessage() {
-    
+    let fallback = "N.A.";
     // build the message container (only once)
-    let messageDiv = document.querySelector('.message');
-    if (!messageDiv) {
-        messageDiv = document.createElement('div');
-        messageDiv.className = 'message';
-        document.body.insertAdjacentElement('afterbegin', messageDiv);
-    }
+    messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    document.body.insertAdjacentElement('afterbegin', messageDiv);
 
     fetch('/api/node/v1/today')
         .then(res => {
@@ -112,12 +109,12 @@ function injectTodayMessage() {
         .then(data => {
             const dateStr = (data && data.status === 'OK' && data.date)
                 ? data.date
-                : "N.A.";
+                : fallback;
             messageDiv.innerHTML = `<p>Today is ${dateStr}</p>`;
         })
         .catch(() => {
             // fallback 2 – network / JSON error
-            messageDiv.innerHTML = `<p>Today is ${todayLocal}</p>`;
+            messageDiv.innerHTML = `<p>Today is ${fallback}</p>`;
         });
 }
 
