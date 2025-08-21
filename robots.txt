@@ -1,12 +1,16 @@
+# ------------------------------------------------------------------------------
+# robots.txt  –  https://knuth-it.duckdns.org
+# Last updated: 2024-05-16
+# ------------------------------------------------------------------------------
+
+# Default rules for all crawlers
 User-agent: *
 Allow: /
+# Re-allow the assets Google needs for rendering
+Allow: /css/
+Allow: /js/
 
-# Sitemap location
+# ------------------------------------------------------------------------------
+# Sitemaps
+# ------------------------------------------------------------------------------
 Sitemap: https://knuth-it.duckdns.org/sitemap.xml
-
-# Allow access to CSS and JS files
-Disallow: /css/
-Disallow: /js/
-
-# Crawl delay (optional - 1 second between requests)
-Crawl-delay: 1
