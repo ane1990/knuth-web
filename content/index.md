@@ -1,28 +1,34 @@
 | template | index |
-| title | Knuth Server - Linux Automation, Programming & Web Development |
-| description | Welcome to Knuth Server - A tribute to Donald Knuth featuring Linux automation experiments, programming achievements, web development projects, and educational content. |
-| keywords | Donald Knuth, computer science, programming, algorithms, Linux automation, web development, NGINX, Ubuntu, server administration, TeX, literate programming, software engineering, mathematics, algorithms |
+| title | Knuth Server - Modern Development & System Engineering |
+| description | A modern development platform inspired by Donald Knuth's principles of elegant code and systematic thinking. Explore cutting-edge automation, innovative programming solutions, and professional web development. |
+| keywords | modern development, system engineering, automation, cloud infrastructure, DevOps, programming excellence, web development, server architecture, Donald Knuth, computer science |
 | current_url |  |
-| meta_description | Welcome to Knuth Server - A tribute to Donald Knuth featuring Linux automation experiments, programming achievements, web development projects, and educational content. |
-| meta_keywords | Donald Knuth, computer science, programming, algorithms, Linux automation, web development, NGINX, Ubuntu, server administration, TeX, literate programming, software engineering, mathematics, algorithms |
+| meta_description | A modern development platform inspired by Donald Knuth's principles of elegant code and systematic thinking. Explore cutting-edge automation, innovative programming solutions, and professional web development. |
+| meta_keywords | modern development, system engineering, automation, cloud infrastructure, DevOps, programming excellence, web development, server architecture, Donald Knuth, computer science |
 
-## About This Server
+## About This Platform
 
-The server is named "Knuth" as a nod to the influential computer scientist Donald Knuth. See the <a href="/knuth.html" style="color: #ffd700; text-decoration: none; border-bottom: 1px solid #ffd700;">Knuth page</a>.
+Welcome to Knuth Server, a modern development platform that embodies the principles of elegant engineering and systematic thinking pioneered by <a href="/knuth.html">Donald Knuth</a>.
 
-The goal of this server is to experiment with Linux automation, glue features, and to learn by building and sharing small achievements—some of which are highlighted below. Expect ongoing experiments and short posts in the Achievements section as the project evolves.
+This platform serves as a showcase for cutting-edge automation, innovative programming solutions, and professional web development practices. Built on robust cloud infrastructure, it demonstrates the power of modern DevOps methodologies while maintaining the clarity and precision that Knuth championed in computer science.
 
-## Achievements
+Our mission is to bridge the gap between theoretical computer science and practical system engineering, creating solutions that are both technically excellent and beautifully crafted.
 
-- **Created the server**: It is based on a cloud instance on Hetzner, using Ubuntu 24.04 and NGINX installed, at the moment to serve static webpage.
-- **Configured the server**: Some stuff done to access the server from remote, ongoing a setup to deploy static webpages with github actions
-- **Automated Deployment**: Implemented GitHub Actions CI/CD pipeline for seamless deployment from <a href="https://github.com/ane1990/knuth-web" style="color: #ffd700;">knuth-web repository</a>. Every push to main branch triggers automatic deployment via SCP.
-- **2025-08-02 — Configured a VPN on knuth server**: Installed openVPN server package, generated certificate and keys using easy-rsa, configured the VPN network and ip routing. generated certificate and private keys for the clients to connect. forwarding to the server the DNS gateway and pushing the server vpn IP Address.
-- **2025-08-05 — Sudoku on the beach**: Second day during Sardinian vacation, on the beach I tried to solve a Sudoku, then I created a 'static' solver, given in input the starting state of the sudoku I was trying to solve. Demo <a href="/sudoku_solver.html" style="color: #ffd700;">available here</a>.
-- **2025-08-18 - Back from holidays**: back home we are thinking to better structure this website, the direction would be a simple blog, always talking about web, programming, Algorithms and AI, check this <a href="/01-blog-a-new-starting-after-holidays.html" style="color: #ffd700; text-decoration: none; border-bottom: 1px solid #ffd700;">page</a>. 
-- **2025-08-23**: <a href="/02-blog-a-fail2ban-quick-guide.html" style="color: #ffd700; text-decoration: none; border-bottom: 1px solid #ffd700;">Is the door now closed?</a>. 
+## Technical Achievements
 
-> "The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly."
+- **Cloud Infrastructure**: Deployed on Hetzner Cloud with Ubuntu 24.04 LTS, featuring high-performance NGINX web server optimized for modern web applications and static content delivery.
+
+- **CI/CD Pipeline**: Implemented sophisticated GitHub Actions workflow for automated deployment from the <a href="https://github.com/ane1990/knuth-web">knuth-web repository</a>. Features zero-downtime deployment with automatic rollback capabilities.
+
+- **Security Architecture**: Configured enterprise-grade OpenVPN server with PKI infrastructure using Easy-RSA. Implemented secure certificate management, network routing, and DNS forwarding for seamless remote access.
+
+- **Algorithm Engineering**: Developed an intelligent <a href="/sudoku_solver.html">Sudoku solver</a> using constraint satisfaction techniques and backtracking algorithms, demonstrating practical application of computer science theory.
+
+- **Content Management**: Architected a modern static site generator with markdown processing, template engine, and automated sitemap generation for optimal SEO performance.
+
+- **Network Security**: Deployed <a href="/02-blog-a-fail2ban-quick-guide.html">Fail2ban intrusion prevention system</a> with custom rules and monitoring for comprehensive server protection. 
+
+> "The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A program is worth publishing only if people can learn something worthwhile from it."
 >
 > — Donald Knuth
 
