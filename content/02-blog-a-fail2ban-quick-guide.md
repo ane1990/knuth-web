@@ -1,8 +1,12 @@
 | template | blog-post |
 | title | Is the door now closed? |
-| description | A short guide and a cheatsheet about the usage of fail2ban on Linux |
-| keywords | blog, updates, linux, system-administrations, hackers, attacker, forever, ban |
-| summary | A short guide and a cheatsheet about the usage of fail2ban on Linux  |
+| description | A comprehensive guide and cheatsheet about the usage of fail2ban on Linux systems. Learn how to protect your server from malicious attacks with permanent bans. |
+| keywords | blog, updates, linux, system-administration, hackers, attacker, forever, ban, fail2ban, security, server protection, ssh, nginx |
+| summary | A short guide and a cheatsheet about the usage of fail2ban on Linux |
+| publish_date | 2025-08-23 |
+| current_url | 02-blog-a-fail2ban-quick-guide.html |
+| meta_description | A comprehensive guide and cheatsheet about the usage of fail2ban on Linux systems. Learn how to protect your server from malicious attacks with permanent bans. |
+| meta_keywords | blog, updates, linux, system-administration, hackers, attacker, forever, ban, fail2ban, security, server protection, ssh, nginx, cybersecurity |
 
 ## Today, 2025-08-23
 

@@ -1,8 +1,12 @@
 | template | blog-post |
 | title | A new start after holidays |
-| description | Back from holidays with fresh ideas and a refactored site workflow. |
-| keywords | blog, updates, refactor, holidays |
-| summary | Today I’m back from two weeks of holidays with new ideas, goals, and good intentions. This is a quick first post after refactoring the website to support markdown-driven pages. |
+| description | Back from holidays with fresh ideas and a refactored site workflow. Exploring the journey of simplifying web development and keeping things minimal. |
+| keywords | blog, updates, refactor, holidays, web development, simplicity, markdown, static site |
+| summary | Today I'm back from two weeks of holidays with new ideas, goals, and good intentions. This is a quick first post after refactoring the website to support markdown-driven pages. |
+| publish_date | 2025-08-18 |
+| current_url | 01-blog-a-new-starting-after-holidays.html |
+| meta_description | Back from holidays with fresh ideas and a refactored site workflow. Exploring the journey of simplifying web development and keeping things minimal. |
+| meta_keywords | blog, updates, refactor, holidays, web development, simplicity, markdown, static site, programming, algorithms |
 
 ## Today, 2025-08-18
 

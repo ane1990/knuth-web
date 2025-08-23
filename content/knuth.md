@@ -1,4 +1,10 @@
 | template | knuth |
+| title | Thank You, Donald Knuth - Computer Science Pioneer & Programming Legend |
+| description | A tribute to Donald Knuth, creator of The Art of Computer Programming, TeX typesetting system, and pioneer of literate programming. |
+| keywords | Donald Knuth, computer science, programming, algorithms, The Art of Computer Programming, TeX, literate programming, Turing Award, computer scientist, mathematician |
+| current_url | knuth.html |
+| meta_description | A tribute to Donald Knuth, creator of The Art of Computer Programming, TeX typesetting system, and pioneer of literate programming. |
+| meta_keywords | Donald Knuth, computer science, programming, algorithms, The Art of Computer Programming, TeX, literate programming, Turing Award, computer scientist, mathematician |
 
 ## A Lifetime of Dedication
 

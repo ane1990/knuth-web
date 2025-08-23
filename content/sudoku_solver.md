@@ -1,4 +1,10 @@
 | template | sudoku_solver |
+| title | Sudoku Solver - Interactive Online Puzzle Game & Algorithm Demo |
+| description | Interactive Sudoku solver with algorithm demonstration. Solve Sudoku puzzles online with our backtracking algorithm implementation. |
+| keywords | sudoku, puzzle, solver, algorithm, backtracking, game, interactive, online, programming, demo |
+| current_url | sudoku_solver.html |
+| meta_description | Interactive Sudoku solver with algorithm demonstration. Solve Sudoku puzzles online with our backtracking algorithm implementation. |
+| meta_keywords | sudoku, puzzle, solver, algorithm, backtracking, game, interactive, online, programming, demo |
 
 {
   "0,0":3, "0,3":9, "0,5":5, "0,8":4,

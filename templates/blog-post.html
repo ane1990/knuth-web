@@ -6,7 +6,45 @@
   <title>{{page_title}}</title>
   <meta name="description" content="{{meta_description}}">
   <meta name="keywords" content="{{meta_keywords}}">
+  <meta name="author" content="A.A.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{page_title}}">
+  <meta property="og:description" content="{{meta_description}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://knuth-it.duckdns.org/{{current_url}}">
+  <meta property="og:site_name" content="Knuth Server">
+  <meta property="og:author" content="A.A.">
+  <meta property="article:published_time" content="{{publish_date}}">
+  <meta property="article:section" content="Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{page_title}}">
+  <meta name="twitter:description" content="{{meta_description}}">
+  <meta name="twitter:creator" content="@knuth_server">
+  <link rel="canonical" href="https://knuth-it.duckdns.org/{{current_url}}">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{page_title}}",
+    "description": "{{meta_description}}",
+    "author": {
+      "@type": "Person",
+      "name": "A.A."
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Knuth Server",
+      "url": "https://knuth-it.duckdns.org/"
+    },
+    "datePublished": "{{publish_date}}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://knuth-it.duckdns.org/{{current_url}}"
+    },
+    "keywords": "{{meta_keywords}}"
+  }
+  </script>
 </head>
 <body>
   <div class="stars" id="stars"></div>

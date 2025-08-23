@@ -106,9 +106,11 @@ async function build() {
 
     if (template === 'sudoku_solver') {
       const initial = parseSudokuInitial(bodyContent);
+      const currentUrl = meta.current_url || '';
       const html = replacePlaceholders(tpl, {
         sudoku_initial: JSON.stringify(initial),
-        content: ''
+        content: '',
+        current_url: escapeHtml(currentUrl)
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else if (template === 'index') {
@@ -124,20 +126,28 @@ async function build() {
       const description = meta.description || '';
       const keywords = meta.keywords || '';
       const summary = meta.summary || '';
+      const publishDate = meta.publish_date || '';
+      const currentUrl = meta.current_url || '';
+      const metaDescription = meta.meta_description || description;
+      const metaKeywords = meta.meta_keywords || keywords;
       const articleHtml = marked.parse(bodyContent || '');
       const summaryHtml = marked.parse(summary || '');
       const html = replacePlaceholders(tpl, {
         page_title: escapeHtml(title),
-        meta_description: escapeHtml(description),
-        meta_keywords: escapeHtml(keywords),
+        meta_description: escapeHtml(metaDescription),
+        meta_keywords: escapeHtml(metaKeywords),
         summary_html: summaryHtml,
-        article_html: articleHtml
+        article_html: articleHtml,
+        publish_date: escapeHtml(publishDate),
+        current_url: escapeHtml(currentUrl)
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else if (template === 'knuth') {
       const structured = renderKnuthSections(bodyContent);
+      const currentUrl = meta.current_url || '';
       const html = replacePlaceholders(tpl, {
-        content: structured
+        content: structured,
+        current_url: escapeHtml(currentUrl)
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else {

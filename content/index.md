@@ -1,4 +1,10 @@
 | template | index |
+| title | Knuth Server - Linux Automation, Programming & Web Development |
+| description | Welcome to Knuth Server - A tribute to Donald Knuth featuring Linux automation experiments, programming achievements, web development projects, and educational content. |
+| keywords | Donald Knuth, computer science, programming, algorithms, Linux automation, web development, NGINX, Ubuntu, server administration, TeX, literate programming, software engineering, mathematics, algorithms |
+| current_url |  |
+| meta_description | Welcome to Knuth Server - A tribute to Donald Knuth featuring Linux automation experiments, programming achievements, web development projects, and educational content. |
+| meta_keywords | Donald Knuth, computer science, programming, algorithms, Linux automation, web development, NGINX, Ubuntu, server administration, TeX, literate programming, software engineering, mathematics, algorithms |
 
 ## About This Server
 
