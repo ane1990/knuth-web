@@ -236,8 +236,8 @@ function renderIndexSections(markdown) {
     return body.trim();
   }
 
-  const aboutMd = extractSection('About This Server');
-  const achievementsMd = extractSection('Achievements');
+  const aboutMd = extractSection('About This Platform');
+  const achievementsMd = extractSection('Technical Achievements');
   // Quote: first blockquote block
   const quoteBlock = (text.match(/(^>.*(?:\n>.*)*)/m) || [null, ''])[1];
 
