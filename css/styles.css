@@ -333,43 +333,6 @@ body {
     border-bottom-color: var(--accent-light);
 }
 
-/* Add styles for code blocks to prevent horizontal overflow */
-.content pre, .content code {
-    overflow-x: auto;
-    max-width: 100%;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background: var(--background-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.content pre {
-    padding: 1.25rem;
-    margin: 1.5rem 0;
-}
-
-.content code {
-    padding: 0.25rem 0.5rem;
-    display: inline-block;
-}
-
-/* Ensure code blocks don't break layout on small screens */
-@media (max-width: 768px) {
-    .content pre, .content code {
-        font-size: 0.8rem;
-        padding: 0.75rem;
-    }
-    
-    .content pre {
-        padding: 1rem;
-        margin: 1rem 0;
-    }
-}
-
 .signature {
     text-align: center;
     margin-top: 4rem;
