@@ -24,7 +24,7 @@ Our mission is to bridge the gap between theoretical computer science and practi
 
 - **Algorithm Engineering**: Developed an intelligent <a href="/sudoku_solver.html">Sudoku solver</a> using constraint satisfaction techniques and backtracking algorithms, demonstrating practical application of computer science theory.
 
-- **Content Management**: Architected a modern static site generator with markdown processing, template engine, and automated sitemap generation for optimal SEO performance.
+- **Content Management**: Architected a modern static site generator with markdown processing, template engine, and automated sitemap generation for optimal SEO performance. Here <a href="/01-blog-a-new-starting-after-holidays.html"> a first blog page example.
 
 - **Network Security**: Deployed <a href="/02-blog-a-fail2ban-quick-guide.html">Fail2ban intrusion prevention system</a> with custom rules and monitoring for comprehensive server protection. 
 
