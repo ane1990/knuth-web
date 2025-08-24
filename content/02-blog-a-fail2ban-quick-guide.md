@@ -10,12 +10,13 @@
 
 ## Today, 2025-08-23
 
-A bit tired to see in this server a lot of `ssh` tentatives to access using user/password (but unfortunately for them password access is not possible on knuth :-) or checking in the nginx `access.log` a plenty of http protocol maliciuos handshake injections i decided to investigate a bit and finally installed fail2ban and configured it. 
-Basically with a dictatorial policy ONE ATTEMP = FOREVER BAN.
+After noticing numerous SSH login attempts using username/password combinations (fortunately password access is disabled on this server) and observing malicious HTTP protocol handshake injections in the nginx `access.log`, I decided to investigate and ultimately installed and configured fail2ban. 
+
+With a strict policy: ONE ATTEMPT = PERMANENT BAN.
 
 ---
 
-Here i publish a guide with some usefull commands used to setup or check the status in the future of this server maintenance:
+Here I present a guide with useful commands for setting up and checking the status of fail2ban during future server maintenance:
 
 ```markdown
 # Fail2ban Cheat-sheet  
@@ -30,7 +31,9 @@ apt-get install fail2ban
 ```bash
 cp /etc/fail2ban/filter.d/nginx-badrequest.conf /etc/fail2ban/filter.d/nginx-attacker.conf
 ```
-(created a specific filter, since i treat on the nginx everything i consider garbage to respond with `444`, adapted some lines into the .conf, per nano commands below)
+# Created a specific filter since we treat all garbage requests in nginx with a `444` response
+# The nginx-badrequest.conf is a native fail2ban filter that detects various types of malicious requests
+# including malformed HTTP requests, SQL injection attempts, and other suspicious patterns
 
 ```bash
 nano /etc/fail2ban/filter.d/nginx-attacker.conf
@@ -40,7 +43,7 @@ nano /etc/fail2ban/filter.d/nginx-attacker.conf
 ```bash
 nano /etc/fail2ban/jail.local
 ```
-Inside it, add or **replace**:
+# Inside it, add or **replace**:
 ```ini
 [nginx-attacker]
 backend = auto
@@ -52,6 +55,30 @@ findtime = 10
 maxretry = 0
 bantime  = -1
 ```
+# Configuration explanation:
+# - backend = auto: Automatically detect the backend system
+# - enabled = true: Enable this jail
+# - port = http,https: Monitor both HTTP and HTTPS traffic
+# - filter = nginx-attacker: Use our custom filter
+# - logpath = /var/log/nginx/access.log: Path to nginx access logs
+# - findtime = 10: Time window in seconds to look for violations
+# - maxretry = 0: No retries allowed - immediate ban on first offense
+# - bantime = -1: Permanent ban (-1 means infinite)
+
+# Why enable the native nginx-badrequest filter?
+# It's better to use the native filter because it's regularly updated with new patterns
+# and covers a wide range of malicious requests including:
+# - SQL injection attempts
+# - Path traversal attacks
+# - Malformed HTTP requests
+# - Suspicious user agents
+# - Common exploit patterns
+#
+# For example, in our server logs we found requests like:
+# 205.210.31.226 - - [24/Aug/2025:09:14:28 +0000] "\x16\x03\x01\x00\xCA\x01\x00\x00\xC6\x03\x036\xE5$\xF5\xA5\x1F\x86\x9E/\xF2\xEA\x92\xD1\xF7\xEA}Clo\xC9{w\x85\xDE3if\xA7\xBD\xF4'\x22\x00\x00h\xCC\x14\xCC\x13\xC0/\xC0+\xC00\xC0,\xC0\x11\xC0\x07\xC0'\xC0#\xC0\x13\xC0\x09\xC0(\xC0$\xC0\x14\xC0" 400 166 "-" "-"
+# These are SSL/TLS handshake attempts on non-SSL ports, which are clearly malicious
+# The nginx-badrequest filter can detect and block these automatically
+
 *(example of the nginx attacker configuration)*
 
 ## 4. Reload and verify
