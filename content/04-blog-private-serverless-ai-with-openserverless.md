@@ -39,6 +39,21 @@ Change every domain reference from `miniops.me` → `stallman.duckdns.org`
    ops debug kube ctl CMD="patch cm nuv-config -n nuvolaris \
      --type merge -p '{\"data\":{\"apihost\":\"https://stallman.duckdns.org\"}}'"
    ```
+also fix localhost:9000
+         prensent in S3_API_URL env variable 
+
+you can simply set using ops env add S3_API_URL http://s3.stallman.duckdns.org
+i was guessing where this env variable are persisted, since was not present in the cluster cm or secret, so i investigated further:
+this value is in the ops env stored in the couchDb nuvolaris_users_metadata database.
+its accessible with user and password
+ops debug kube ctl CMD="exec -it couchdb-0 -n nuvolaris -- curl -u $COUCHDB_USER:$COUCHDB_PASS -X GET http://localhost:5984/nuvolaris_users_metadata/devel"
+
+to get the COUCHDB_USER and COUCHDB_PASS
+set COUCHDB_USER (ops debug kube ctl CMD="get secret couchdb-auth-52gm9886fg -n nuvolaris -o jsonpath='{.data.db_username}'" | base64 -d)
+set COUCHDB_PASSWORD (ops debug kube ctl CMD="get secret couchdb-auth-52gm9886fg -n nuvolaris -o jsonpath='{.data.db_password}'" | base64 -d)
+
+
+  
 
 3. Verify
 
