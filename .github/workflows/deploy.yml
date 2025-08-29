@@ -31,11 +31,11 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H knuth-it.duckdns.org >> ~/.ssh/known_hosts
+        ssh-keyscan -H knuth.li >> ~/.ssh/known_hosts
         
     - name: Deploy to server
       run: |
-        scp -i ~/.ssh/id_rsa -P 22 -r dist/* alberto@knuth-it.duckdns.org:/var/www/html/content/
+        scp -i ~/.ssh/id_rsa -P 22 -r dist/* alberto@knuth.li:/var/www/html/content/
         
     - name: Cleanup SSH
       run: |

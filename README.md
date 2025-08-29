@@ -30,13 +30,13 @@ Before the automated deployment can work, you need to set up the following:
 If you need to deploy manually, you can use the following command:
 
 ```bash
-scp -i mykey-knuth -P 22 -r dist/* alberto@knuth-it.duckdns.org:/var/www/html/content/
+scp -i mykey-knuth -P 22 -r dist/* alberto@knuth.li:/var/www/html/content/
 ```
 
 ### Server Configuration
 
 The deployment target is:
-- **Server**: `knuth-it.duckdns.org`
+- **Server**: `knuth.li`
 - **User**: `alberto`
 - **Port**: `22`
 - **Destination**: `/var/www/html/content/`
