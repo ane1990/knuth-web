@@ -1,5 +1,5 @@
 | template | index |
-| title | Knuth Server - Modern Development & System Engineering |
+| title | Knuth Platform - Modern Development & System Engineering |
 | description | A modern development platform inspired by Donald Knuth's principles of elegant code and systematic thinking. Explore cutting-edge automation, innovative programming solutions, and professional web development. |
 | keywords | modern development, system engineering, automation, cloud infrastructure, DevOps, programming excellence, web development, server architecture, Donald Knuth, computer science |
 | current_url |  |
@@ -8,7 +8,7 @@
 
 ## About This Platform
 
-Welcome to Knuth Server, a modern development platform that embodies the principles of elegant engineering and systematic thinking pioneered by <a href="/knuth.html">Donald Knuth</a>.
+Welcome to Knuth Platform, a modern development platform that embodies the principles of elegant engineering and systematic thinking pioneered by <a href="/knuth.html">Donald Knuth</a>.
 
 This platform serves as a showcase for cutting-edge automation, innovative programming solutions, and professional web development practices. Built on robust cloud infrastructure, it demonstrates the power of modern DevOps methodologies while maintaining the clarity and precision that Knuth championed in computer science.
 

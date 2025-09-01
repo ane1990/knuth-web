@@ -1,10 +1,10 @@
 | template | legal |
 | title | Terms and Conditions |
-| description | Terms and Conditions for Knuth Server - A non-commercial website |
-| keywords | terms and conditions, knuth server |
+| description | Terms and Conditions for Knuth Platform - A non-commercial website |
+| keywords | terms and conditions, knuth platform |
 | current_url | terms-and-conditions.html |
-| meta_description | Terms and Conditions for Knuth Server - A non-commercial website |
-| meta_keywords | terms and conditions, knuth server |
+| meta_description | Terms and Conditions for Knuth Platform - A non-commercial website |
+| meta_keywords | terms and conditions, knuth platform |
 | publish_date | 2025-09-01 |
 
 # Terms and Conditions
@@ -13,9 +13,9 @@ Last updated: September 1, 2025
 
 ## Introduction
 
-Welcome to Knuth Server. These terms and conditions outline the rules and regulations for the use of our website.
+Welcome to Knuth Platform. These terms and conditions outline the rules and regulations for the use of our website.
 
-By accessing this website, we assume you accept these terms and conditions. Do not continue to use Knuth Server if you do not agree to all the terms stated here.
+By accessing this website, we assume you accept these terms and conditions. Do not continue to use Knuth Platform if you do not agree to all the terms stated here.
 
 ## Intellectual Property
 
@@ -29,7 +29,7 @@ This is a non-commercial website created for educational and demonstration purpo
 
 You must not:
 
-- Republish material from Knuth Server without prior written permission
+- Republish material from Knuth Platform without prior written permission
 - Sell, rent, or sub-license material from the website
 - Reproduce, duplicate, or copy content without permission
 - Engage in any data mining, data harvesting, or similar activities

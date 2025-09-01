@@ -1,10 +1,10 @@
 | template | legal |
 | title | Cookie Policy |
-| description | Cookie Policy for Knuth Server - We don't use cookies |
-| keywords | cookie policy, cookies, knuth server |
+| description | Cookie Policy for Knuth Platform - We don't use cookies |
+| keywords | cookie policy, cookies, knuth platform |
 | current_url | cookie-policy.html |
-| meta_description | Cookie Policy for Knuth Server - We don't use cookies |
-| meta_keywords | cookie policy, cookies, knuth server |
+| meta_description | Cookie Policy for Knuth Platform - We don't use cookies |
+| meta_keywords | cookie policy, cookies, knuth platform |
 | publish_date | 2025-09-01 |
 
 # Cookie Policy
@@ -17,7 +17,7 @@ Cookies are small text files that are stored on your device when you visit websi
 
 ## Our Cookie Policy
 
-**Knuth Server does not use cookies of any kind.** We have deliberately designed this website to function without cookies to ensure maximum privacy for our visitors.
+**Knuth Platform does not use cookies of any kind.** We have deliberately designed this website to function without cookies to ensure maximum privacy for our visitors.
 
 This means we do not track your browsing behavior, preferences, or any other information through cookie technology.
 

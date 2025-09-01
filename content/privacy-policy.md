@@ -1,10 +1,10 @@
 | template | legal |
 | title | Privacy Policy |
-| description | Privacy Policy for Knuth Server - A non-commercial website that does not collect personal data |
-| keywords | privacy policy, data protection, knuth server |
+| description | Privacy Policy for Knuth Platform - A non-commercial website that does not collect personal data |
+| keywords | privacy policy, data protection, knuth platform |
 | current_url | privacy-policy.html |
-| meta_description | Privacy Policy for Knuth Server - A non-commercial website that does not collect personal data |
-| meta_keywords | privacy policy, data protection, knuth server |
+| meta_description | Privacy Policy for Knuth Platform - A non-commercial website that does not collect personal data |
+| meta_keywords | privacy policy, data protection, knuth platform |
 | publish_date | 2025-09-01 |
 
 # Privacy Policy
@@ -13,11 +13,11 @@ Last updated: September 1, 2025
 
 ## Introduction
 
-Welcome to Knuth Server. This Privacy Policy explains our commitment to your privacy and describes how we handle any information related to your use of our website.
+Welcome to Knuth Platform. This Privacy Policy explains our commitment to your privacy and describes how we handle any information related to your use of our website.
 
 ## Information Collection
 
-We want to be completely transparent: **Knuth Server does not collect, store, or process any personal data from its visitors.** This website is a non-commercial platform with no user accounts, registration forms, or data collection mechanisms of any kind.
+We want to be completely transparent: **Knuth Platform does not collect, store, or process any personal data from its visitors.** This website is a non-commercial platform with no user accounts, registration forms, or data collection mechanisms of any kind.
 
 We do not use cookies, tracking pixels, web beacons, or any other tracking technologies. There are no third-party analytics services, advertising networks, or social media plugins that might collect information about you.
 
