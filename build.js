@@ -195,9 +195,14 @@ async function build() {
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else if (template === 'blog') {
       // Generate blog index page
-      let blogPostsHtml = '<ul>';
+      let blogPostsHtml = '<ul class="blog-post-list">';
       for (const post of blogPosts) {
-        blogPostsHtml += `<li><a href="/${post.url}">${post.title}</a> <small>(${post.publishDate})</small><br><em>${post.summary}</em></li>`;
+        blogPostsHtml += `
+          <li class="blog-post-item">
+            <a href="/${post.url}" class="blog-post-title">${post.title}</a>
+            <span class="blog-post-date">${post.publishDate}</span>
+            <p class="blog-post-summary">${post.summary}</p>
+          </li>`;
       }
       blogPostsHtml += '</ul>';
       
