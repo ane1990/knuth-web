@@ -138,7 +138,7 @@ function initializeBlogFooter() {
     blogLink.parentNode.insertBefore(blogPostsContainer, blogLink.nextSibling);
     
     // Add click event to toggle blog posts
-    blogLink.addEventListener('click', function(e) {
+    blogLink.addEventListener('mouseover', function(e) {
         e.preventDefault();
         
         if (blogPostsContainer.style.display === 'none') {
