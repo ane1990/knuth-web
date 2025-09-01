@@ -158,6 +158,15 @@ async function build() {
     // Replace the blog posts placeholder in the footer
     tpl = tpl.replace(/<div class="footer-blog-posts">[^]*?<\/div>/, 
       `<div class="footer-blog-posts">${recentBlogPostsHtml}</div>`);
+      
+    // Also replace in blog navigation partial if it exists
+    const blogNavPath = path.join(templatesDir, 'partials', 'blog-nav.html');
+    if (await fs.pathExists(blogNavPath)) {
+      let blogNav = await fs.readFile(blogNavPath, 'utf8');
+      blogNav = blogNav.replace(/<div class="nav-blog-posts">[^]*?<\/div>/, 
+        `<div class="nav-blog-posts">${recentBlogPostsHtml}</div>`);
+      await fs.outputFile(blogNavPath, blogNav, 'utf8');
+    }
 
     const bodyContent = lines.slice(startIndex).join('\n');
 
