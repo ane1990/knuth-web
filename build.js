@@ -127,6 +127,16 @@ async function build() {
     const numB = parseInt(b.url.match(/^\d+/) || '0');
     return numB - numA; // Newest first
   });
+  
+  // Get the 3 most recent blog posts for the footer
+  const recentBlogPosts = blogPosts.slice(0, 3);
+  const recentBlogPostsHtml = recentBlogPosts.map(post => 
+    `<div class="footer-blog-post">
+      <a href="/${post.url}" class="footer-blog-post-title">${post.title}</a>
+      <div class="footer-blog-post-date">${post.publishDate}</div>
+      <div class="footer-blog-post-summary">${post.summary}</div>
+    </div>`
+  ).join('\n');
 
   // Process all files
   for (const file of mdFiles) {
@@ -144,6 +154,10 @@ async function build() {
     }
     let tpl = await fs.readFile(templatePath, 'utf8');
     tpl = includePartials(tpl);
+
+    // Replace the blog posts placeholder in the footer
+    tpl = tpl.replace(/<div class="footer-blog-posts">[^]*?<\/div>/, 
+      `<div class="footer-blog-posts">${recentBlogPostsHtml}</div>`);
 
     const bodyContent = lines.slice(startIndex).join('\n');
 

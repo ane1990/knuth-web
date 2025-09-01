@@ -23,6 +23,21 @@
 <body>
     <div class="stars" id="stars"></div>
     <div class="container">
+        <header class="header">
+            <pre class="ascii-art">
+██╗  ██╗███╗   ██╗██╗   ██╗████████╗██╗  ██╗
+██║ ██╔╝████╗  ██║██║   ██║╚══██╔══╝██║  ██║
+█████╔╝ ██╔██╗ ██║██║   ██║   ██║   ███████║
+██╔═██╗ ██║╚██╗██║██║   ██║   ██║   ██╔══██║
+██║  ██╗██║ ╚████║╚██████╔╝   ██║   ██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝
+            </pre>
+            <h1 class="title">{{title}}</h1>
+            <p class="subtitle">Last updated: {{publish_date}}</p>
+            <nav>
+                <a href="/" class="nav-link">← Back to Server Home</a>
+            </nav>
+        </header>
         <main class="content">
             <section class="tribute-section">
                 {{content}}

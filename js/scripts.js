@@ -118,62 +118,6 @@ function injectTodayMessage() {
         });
 }
 
-// Initialize expandable blog section in footer
-function initializeBlogFooter() {
-    const blogLink = document.getElementById('blog-footer-link');
-    if (!blogLink) return;
-    
-    // Create blog posts container
-    const blogPostsContainer = document.createElement('div');
-    blogPostsContainer.id = 'blog-posts-container';
-    blogPostsContainer.style.display = 'none';
-    blogPostsContainer.style.marginTop = '10px';
-    blogPostsContainer.style.padding = '10px';
-    blogPostsContainer.style.backgroundColor = 'rgba(30, 41, 59, 0.5)';
-    blogPostsContainer.style.borderRadius = '0.5rem';
-    blogPostsContainer.style.maxHeight = '300px';
-    blogPostsContainer.style.overflowY = 'auto';
-    
-    // Insert after the blog link
-    blogLink.parentNode.insertBefore(blogPostsContainer, blogLink.nextSibling);
-    
-    // Add click event to toggle blog posts
-    blogLink.addEventListener('mouseover', function(e) {
-        e.preventDefault();
-        
-        if (blogPostsContainer.style.display === 'none') {
-            // Load blog posts if not already loaded
-            if (blogPostsContainer.innerHTML === '') {
-                loadBlogPosts(blogPostsContainer);
-            }
-            blogPostsContainer.style.display = 'block';
-            blogLink.textContent = 'Blog ▲';
-        } else {
-            blogPostsContainer.style.display = 'none';
-            blogLink.textContent = 'Blog';
-        }
-    });
-}
-
-// Load blog posts via fetch
-function loadBlogPosts(container) {
-    // In a real implementation, we would fetch this data from an API
-    // For now, we'll add a placeholder message
-    container.innerHTML = '<p>Loading blog posts...</p>';
-    
-    // This would be replaced with an actual API call in a more complex implementation
-    // For now, we'll just add a message
-    setTimeout(() => {
-        container.innerHTML = `
-            <p><a href="/01-blog-a-new-starting-after-holidays.html" style="color: #f59e0b; text-decoration: none;">A new start after holidays</a><br>
-            <small>2025-08-18</small></p>
-            <p><a href="/02-blog-a-fail2ban-quick-guide.html" style="color: #f59e0b; text-decoration: none;">Is the door now closed?</a><br>
-            <small>2025-08-23</small></p>
-        `;
-    }, 500);
-}
-
-// Initialize everything when page loads
 function initializePage() {
     createStars();
     revealOnScroll();
@@ -181,7 +125,6 @@ function initializePage() {
     animateFloatingSymbols();
     addAchievementInteractions();
     injectTodayMessage();
-    initializeBlogFooter();
     
     // Add a gentle fade-in to the whole page
     document.body.style.opacity = '0';
