@@ -1,4 +1,4 @@
-| template | index |
+| template | legal |
 | title | Privacy Policy |
 | description | Privacy Policy for Knuth Server - A non-commercial website that does not collect personal data |
 | keywords | privacy policy, data protection, knuth server |

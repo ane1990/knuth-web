@@ -1,4 +1,4 @@
-| template | index |
+| template | legal |
 | title | Terms and Conditions |
 | description | Terms and Conditions for Knuth Server - A non-commercial website |
 | keywords | terms and conditions, knuth server |

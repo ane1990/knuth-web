@@ -101,7 +101,34 @@ async function build() {
   await fs.copy(path.join(rootDir, 'favicon.ico'), path.join(distDir, 'favicon.ico')).catch(() => {});
   // sitemap.xml will be generated dynamically after pages are built
 
+  // Collect blog posts for the blog index and footer
+  const blogPosts = [];
   const mdFiles = (await fs.readdir(contentDir)).filter((f) => f.endsWith('.md'));
+  
+  // First pass: collect blog post metadata
+  for (const file of mdFiles) {
+    if (file.match(/^\d+-blog-/)) {
+      const raw = await fs.readFile(path.join(contentDir, file), 'utf8');
+      const lines = raw.split(/\r?\n/);
+      const { meta } = parseHeaderTable(lines);
+      const name = path.basename(file, '.md');
+      blogPosts.push({
+        title: meta.title || '',
+        url: meta.current_url || `${name}.html`,
+        summary: meta.summary || '',
+        publishDate: meta.publish_date || ''
+      });
+    }
+  }
+  
+  // Sort blog posts by filename (which includes the number prefix)
+  blogPosts.sort((a, b) => {
+    const numA = parseInt(a.url.match(/^\d+/) || '0');
+    const numB = parseInt(b.url.match(/^\d+/) || '0');
+    return numB - numA; // Newest first
+  });
+
+  // Process all files
   for (const file of mdFiles) {
     const name = path.basename(file, '.md');
     const outName = name === 'index' ? 'index' : name;
@@ -164,6 +191,18 @@ async function build() {
       const html = replacePlaceholders(tpl, {
         content: structured,
         current_url: escapeHtml(currentUrl)
+      });
+      await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
+    } else if (template === 'blog') {
+      // Generate blog index page
+      let blogPostsHtml = '<ul>';
+      for (const post of blogPosts) {
+        blogPostsHtml += `<li><a href="/${post.url}">${post.title}</a> <small>(${post.publishDate})</small><br><em>${post.summary}</em></li>`;
+      }
+      blogPostsHtml += '</ul>';
+      
+      const html = replacePlaceholders(tpl, {
+        blog_posts: blogPostsHtml
       });
       await fs.outputFile(path.join(distDir, `${outName}.html`), html, 'utf8');
     } else {

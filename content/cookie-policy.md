@@ -1,4 +1,4 @@
-| template | index |
+| template | legal |
 | title | Cookie Policy |
 | description | Cookie Policy for Knuth Server - We don't use cookies |
 | keywords | cookie policy, cookies, knuth server |

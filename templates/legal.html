@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Knuth Server</title>
+    <meta name="description" content="{{meta_description}}">
+    <meta name="keywords" content="{{meta_keywords}}">
+    <meta name="author" content="A.A.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{{title}} - Knuth Server">
+    <meta property="og:description" content="{{meta_description}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://knuth.li/{{current_url}}">
+    <meta property="og:site_name" content="Knuth Server">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{title}} - Knuth Server">
+    <meta name="twitter:description" content="{{meta_description}}">
+    <link rel="canonical" href="https://knuth.li/{{current_url}}">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="google-site-verification" content="7SdDojOxRb-x5eO2xdJ2DfkcZoTcoOkvhGf2mIdBytg" />
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">{{title}}</h1>
+            <p class="subtitle">Last updated: {{publish_date}}</p>
+        </header>
+        <main class="content">
+            <section class="tribute-section">
+                {{content}}
+            </section>
+        </main>
+        {{> footer}}
+    </div>
+    <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
+    <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
+    <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
+    <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
+    <div class="floating-symbol" style="top: 40%; left: 50%;">+</div>
+    <script defer src="js/scripts.js"></script>
+</body>
+</html>
