@@ -160,7 +160,7 @@ async function build() {
     if (await fs.pathExists(blogNavPath)) {
       let blogNav = await fs.readFile(blogNavPath, 'utf8');
       blogNav = blogNav.replace(/<div class="nav-blog-posts">[^]*?<\/div>/, 
-        `<div class="nav-blog-posts">${recentBlogPostsHtml}</div>`);
+        `${recentBlogPostsHtml}`);
       await fs.outputFile(blogNavPath, blogNav, 'utf8');
     }
 
