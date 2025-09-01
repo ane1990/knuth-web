@@ -154,10 +154,6 @@ async function build() {
     }
     let tpl = await fs.readFile(templatePath, 'utf8');
     tpl = includePartials(tpl);
-
-    // Replace the blog posts placeholder in the footer
-    tpl = tpl.replace(/<div class="footer-blog-posts">[^]*?<\/div>/, 
-      `<div class="footer-blog-posts">${recentBlogPostsHtml}</div>`);
       
     // Also replace in blog navigation partial if it exists
     const blogNavPath = path.join(templatesDir, 'partials', 'blog-nav.html');
