@@ -406,6 +406,51 @@ code {
     font-style: italic;
 }
 
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    animation: fadeIn 2s ease-in;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: var(--accent-light);
+    border-bottom-color: var(--accent-light);
+}
+
+.footer-info {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.footer-info p {
+    margin: 0.25rem 0;
+}
+
 .heart {
     color: #ff6b6b;
     animation: heartbeat 2s ease-in-out infinite;

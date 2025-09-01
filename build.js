@@ -19,6 +19,21 @@ function replacePlaceholders(template, variables) {
   });
 }
 
+function includePartials(template) {
+  const partialsDir = path.join(templatesDir, 'partials');
+  return template.replace(/\{\{\s*>\s*(.*?)\s*\}\}/g, (_, partialName) => {
+    try {
+      const partialPath = path.join(partialsDir, `${partialName}.html`);
+      if (fs.existsSync(partialPath)) {
+        return fs.readFileSync(partialPath, 'utf8');
+      }
+      return `<!-- Partial not found: ${partialName} -->`;
+    } catch (err) {
+      return `<!-- Error loading partial: ${partialName} -->`;
+    }
+  });
+}
+
 function parseHeaderTable(lines) {
   // Parses consecutive key|value rows at the start of the file
   // Example:
@@ -100,7 +115,8 @@ async function build() {
     if (!(await fs.pathExists(templatePath))) {
       throw new Error(`Template not found: ${templatePath}`);
     }
-    const tpl = await fs.readFile(templatePath, 'utf8');
+    let tpl = await fs.readFile(templatePath, 'utf8');
+    tpl = includePartials(tpl);
 
     const bodyContent = lines.slice(startIndex).join('\n');
 
