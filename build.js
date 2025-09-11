@@ -99,6 +99,7 @@ async function build() {
   await fs.copy(path.join(rootDir, 'js'), path.join(distDir, 'js')).catch(() => {});
   await fs.copy(path.join(rootDir, 'robots.txt'), path.join(distDir, 'robots.txt')).catch(() => {});
   await fs.copy(path.join(rootDir, 'favicon.ico'), path.join(distDir, 'favicon.ico')).catch(() => {});
+  await fs.copy(path.join(rootDir, 'google713d150394d5d7e8.html'), path.join(distDir, 'google713d150394d5d7e8.html')).catch(() => {});
   // sitemap.xml will be generated dynamically after pages are built
 
   // Collect blog posts for the blog index and footer
