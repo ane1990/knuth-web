@@ -1,107 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sudoku Solver - Interactive Online Puzzle Game & Algorithm Demo</title>
-  <meta name="description" content="Interactive Sudoku solver with algorithm demonstration. Solve Sudoku puzzles online with our backtracking algorithm implementation.">
-  <meta name="keywords" content="sudoku, puzzle, solver, algorithm, backtracking, game, interactive, online, programming, demo">
-  <meta name="author" content="A.A.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Sudoku Solver - Interactive Online Puzzle Game">
-  <meta property="og:description" content="Interactive Sudoku solver with algorithm demonstration. Solve Sudoku puzzles online with our backtracking algorithm implementation.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://knuth.li/sudoku_solver.html">
-  <meta property="og:site_name" content="Knuth Platform">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sudoku Solver - Interactive Online Puzzle Game">
-  <meta name="twitter:description" content="Interactive Sudoku solver with algorithm demonstration. Solve Sudoku puzzles online with our backtracking algorithm implementation.">
-  <link rel="canonical" href="https://knuth.li/sudoku_solver.html">
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Sudoku Solver",
-    "description": "Interactive Sudoku solver with algorithm demonstration",
-    "url": "https://knuth.li/sudoku_solver.html",
-    "applicationCategory": "Game",
-    "operatingSystem": "Any",
-    "browserRequirements": "JavaScript enabled",
-    "author": {
-      "@type": "Person",
-      "name": "A.A."
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Knuth Platform",
-      "url": "https://knuth.li/"
-    },
-    "about": {
-      "@type": "Thing",
-      "name": "Sudoku",
-      "description": "Logic-based number placement puzzle"
-    }
-  }
-  </script>
-  <style>
-    .sudoku-wrapper { text-align: center; padding: 40px 0; }
-    table { border-collapse: collapse; margin: 20px auto; }
-    td { border: 1px solid #000; padding: 0; }
-    input { width: 40px; height: 40px; font-size: 20px; text-align: center; border: none; outline: none; }
-    input:disabled { background-color: #ddd; font-weight: bold; }
-    .button-container { margin-top: 20px; }
-    button { padding: 10px 20px; font-size: 16px; margin: 0 10px; cursor: pointer; }
-    td:nth-child(3), td:nth-child(6) { border-right: 2px solid black; }
-    tr:nth-child(3) td, tr:nth-child(6) td { border-bottom: 2px solid black; }
-    @media (max-width: 500px) {
-      input { width: 30px; height: 30px; font-size: 16px; }
-      button { font-size: 14px; padding: 8px 16px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver - Knuth Platform</title>
+    <meta name="description" content="An intelligent Sudoku solver using constraint satisfaction techniques and backtracking algorithms.">
+    <meta name="keywords" content="sudoku, solver, algorithm, constraint satisfaction">
+    <meta name="author" content="A.A.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://knuth.li/sudoku_solver.html">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="google-site-verification" content="7SdDojOxRb-x5eO2xdJ2DfkcZoTcoOkvhGf2mIdBytg" />
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="container">
-    <header class="header">
-      <pre class="ascii-art">
-██╗  ██╗███╗   ██╗██╗   ██╗████████╗██╗  ██╗
-██║ ██╔╝████╗  ██║██║   ██║╚══██╔══╝██║  ██║
-█████╔╝ ██╔██╗ ██║██║   ██║   ██║   ███████║
-██╔═██╗ ██║╚██╗██║██║   ██║   ██║   ██╔══██║
-██║  ██╗██║ ╚████║╚██████╔╝   ██║   ██║  ██║
-╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝
-      </pre>
-      <h1 class="title">🧩 Sudoku Solver</h1>
-      <p class="subtitle">Interactive backtracking demo</p>
-      <nav>
-        <a href="/" class="nav-link">← Back to Server Home</a>
-      </nav>
-    </header>
-    <main class="content">
-      <section class="tribute-section sudoku-wrapper">
-        <table id="sudoku-board"></table>
-        <div class="button-container">
-          <button onclick="solveSudoku()">Solve</button>
-          <button onclick="resetSudoku()">Reset</button>
-        </div>
-      </section>
-    </main>
-    {{> footer}}
-  </div>
-  <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
-  <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
-  <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
-  <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
-  <script defer src="js/scripts.js"></script>
-  <script defer src="js/sudoku.js"></script>
-  <script>
-    window.__SUDOKU_INITIAL__ = {{sudoku_initial}};
-    window.addEventListener('DOMContentLoaded', function () {
-      if (window.initSudoku) window.initSudoku();
-    });
-  </script>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <a href="/" class="site-title">Knuth Platform</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="/sudoku_solver.html" class="nav-link active">Sudoku Solver</a></li>
+                    <li class="nav-item"><a href="/knuth.html" class="nav-link">About Knuth</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="social-links">
+                        <a href="https://github.com/ane1990" class="social-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="content-wrapper">
+                <header class="page-header">
+                    <h1 class="page-title">Sudoku Solver</h1>
+                    <p class="page-subtitle">An intelligent solver using constraint satisfaction and backtracking algorithms</p>
+                </header>
+
+                <div class="content">
+                    {{content}}
+                </div>
+
+                <div id="sudoku-container"></div>
+
+                {{> footer}}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== toggle) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+    <script>
+        var sudokuInitial = {{sudoku_initial}};
+    </script>
+    <script src="js/sudoku.js"></script>
 </body>
 </html>
-
-

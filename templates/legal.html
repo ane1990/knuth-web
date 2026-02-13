@@ -3,52 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} - Knuth Platform</title>
-    <meta name="description" content="{{meta_description}}">
-    <meta name="keywords" content="{{meta_keywords}}">
-    <meta name="author" content="A.A.">
+    <title>Legal - Knuth Platform</title>
+    <meta name="description" content="Legal information and policies for Knuth Platform.">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="{{title}} - Knuth Platform">
-    <meta property="og:description" content="{{meta_description}}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://knuth.li/{{current_url}}">
-    <meta property="og:site_name" content="Knuth Platform">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{title}} - Knuth Platform">
-    <meta name="twitter:description" content="{{meta_description}}">
-    <link rel="canonical" href="https://knuth.li/{{current_url}}">
     <link rel="stylesheet" href="css/styles.css">
     <meta name="google-site-verification" content="7SdDojOxRb-x5eO2xdJ2DfkcZoTcoOkvhGf2mIdBytg" />
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    <div class="container">
-        <header class="header">
-            <pre class="ascii-art">
-██╗  ██╗███╗   ██╗██╗   ██╗████████╗██╗  ██╗
-██║ ██╔╝████╗  ██║██║   ██║╚══██╔══╝██║  ██║
-█████╔╝ ██╔██╗ ██║██║   ██║   ██║   ███████║
-██╔═██╗ ██║╚██╗██║██║   ██║   ██║   ██╔══██║
-██║  ██╗██║ ╚████║╚██████╔╝   ██║   ██║  ██║
-╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝
-            </pre>
-            <nav>
-                <a href="/" class="nav-link">← Back to Server Home</a>
-            </nav>
-            {{> blog-nav}}
-        </header>
-        <main class="content">
-            <section class="tribute-section">
-                {{content}}
-            </section>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <a href="/" class="site-title">Knuth Platform</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="/sudoku_solver.html" class="nav-link">Sudoku Solver</a></li>
+                    <li class="nav-item"><a href="/knuth.html" class="nav-link">About Knuth</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="social-links">
+                        <a href="https://github.com/ane1990" class="social-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="content-wrapper">
+                <header class="page-header">
+                    <h1 class="page-title">Legal</h1>
+                </header>
+
+                <div class="content">
+                    {{content}}
+                </div>
+
+                {{> footer}}
+            </div>
         </main>
-        {{> footer}}
     </div>
-    <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
-    <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
-    <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
-    <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
-    <div class="floating-symbol" style="top: 40%; left: 50%;">+</div>
-    <script defer src="js/scripts.js"></script>
+
+    <script>
+        document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== toggle) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <meta name="author" content="A.A.">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Knuth Platform - Modern Development & System Engineering">
-    <meta property="og:description" content="A modern development platform inspired by Donald Knuth's principles of elegant code and systematic thinking. Explore cutting-edge automation and innovative programming solutions.">
+    <meta property="og:description" content="A modern development platform inspired by Donald Knuth's principles of elegant code and systematic thinking.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://knuth.li/">
     <meta property="og:site_name" content="Knuth Platform">
@@ -29,68 +29,84 @@
       "author": {
         "@type": "Person",
         "name": "A.A."
-      },
-      "about": [
-        {"@type": "Person", "name": "Donald Knuth", "description": "Computer scientist and mathematician, creator of The Art of Computer Programming"},
-        {"@type": "Thing", "name": "System Engineering", "description": "Modern cloud infrastructure and DevOps practices"},
-        {"@type": "Thing", "name": "Programming Excellence", "description": "Elegant code and innovative software solutions"}
-      ]
+      }
     }
     </script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <pre class="ascii-art">
-██╗  ██╗███╗   ██╗██╗   ██╗████████╗██╗  ██╗
-██║ ██╔╝████╗  ██║██║   ██║╚══██╔══╝██║  ██║
-█████╔╝ ██╔██╗ ██║██║   ██║   ██║   ███████║
-██╔═██╗ ██║╚██╗██║██║   ██║   ██║   ██╔══██║
-██║  ██╗██║ ╚████║╚██████╔╝   ██║   ██║  ██║
-╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝
-            </pre>
-            <h1 class="title">Knuth Platform</h1>
-            <p class="subtitle">Modern development platform inspired by Donald Knuth's principles of elegant engineering and systematic thinking</p>
-            <nav>
-                <a href="/knuth.html" class="nav-link">Learn about Donald Knuth</a>
-            </nav>
-        </header>
-        <main class="content">
-            <section class="tribute-section">
-                <h2 class="section-title">About This Platform</h2>
-                <div class="message">
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <a href="/" class="site-title">Knuth Platform</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="/sudoku_solver.html" class="nav-link">Sudoku Solver</a></li>
+                    <li class="nav-item"><a href="/knuth.html" class="nav-link">About Knuth</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="social-links">
+                        <a href="https://github.com/ane1990" class="social-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="content-wrapper">
+                <header class="page-header">
+                    <h1 class="page-title">Knuth Platform</h1>
+                    <p class="page-subtitle">Modern development inspired by Donald Knuth's principles of elegant engineering and systematic thinking</p>
+                </header>
+
+                <div class="content">
                     {{about_message_html}}
                 </div>
-            </section>
-            <section class="tribute-section">
-                <h2 class="section-title">Core Competencies</h2>
-                <ul>
-                    <li><strong>Cloud Infrastructure</strong><br>Enterprise-grade server architecture with automated deployment and monitoring systems.</li>
-                    <li><strong>System Engineering</strong><br>Advanced automation, security hardening, and performance optimization techniques.</li>
-                    <li><strong>Algorithm Development</strong><br>Practical implementations of computer science theory and mathematical problem-solving.</li>
-                    <li><strong>DevOps Excellence</strong><br>CI/CD pipelines, containerization, and modern development workflows.</li>
-                </ul>
-            </section>
-            <section class="tribute-section">
-                <h2 class="section-title">Technical Achievements</h2>
-                <div class="achievements">
-                    {{achievements_cards_html}}
-                </div>
-            </section>
-            <section>
-                {{quote_html}}
-            </section>
-            {{> blog-nav}}
+
+                <section class="content">
+                    <h2>Core Competencies</h2>
+                    <ul>
+                        <li><strong>Cloud Infrastructure</strong> — Enterprise-grade server architecture with automated deployment and monitoring systems.</li>
+                        <li><strong>System Engineering</strong> — Advanced automation, security hardening, and performance optimization techniques.</li>
+                        <li><strong>Algorithm Development</strong> — Practical implementations of computer science theory and mathematical problem-solving.</li>
+                        <li><strong>DevOps Excellence</strong> — CI/CD pipelines, containerization, and modern development workflows.</li>
+                    </ul>
+                </section>
+
+                <section class="content">
+                    <h2>Technical Achievements</h2>
+                    <div class="achievements-grid">
+                        {{achievements_cards_html}}
+                    </div>
+                </section>
+
+                <section class="content">
+                    {{quote_html}}
+                </section>
+
+                {{> blog-nav}}
+            </div>
+
+            {{> footer}}
         </main>
-        {{> footer}}
     </div>
-    <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
-    <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
-    <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
-    <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
-    <div class="floating-symbol" style="top: 40%; left: 50%;">+</div>
-    <script defer src="js/scripts.js"></script>
+
+    <script>
+        // Mobile navigation toggle
+        document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== toggle) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
-
-

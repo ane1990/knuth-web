@@ -1,86 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{page_title}}</title>
-  <meta name="description" content="{{meta_description}}">
-  <meta name="keywords" content="{{meta_keywords}}">
-  <meta name="author" content="A.A.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="{{page_title}}">
-  <meta property="og:description" content="{{meta_description}}">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://knuth.li/{{current_url}}">
-  <meta property="og:site_name" content="Knuth Platform">
-  <meta property="og:author" content="A.A.">
-  <meta property="article:published_time" content="{{publish_date}}">
-  <meta property="article:section" content="Blog">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{{page_title}}">
-  <meta name="twitter:description" content="{{meta_description}}">
-  <meta name="twitter:creator" content="@knuth_server">
-  <link rel="canonical" href="https://knuth.li/{{current_url}}">
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{{page_title}}",
-    "description": "{{meta_description}}",
-    "author": {
-      "@type": "Person",
-      "name": "A.A."
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Knuth Platform",
-      "url": "https://knuth.li/"
-    },
-    "datePublished": "{{publish_date}}",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://knuth.li/{{current_url}}"
-    },
-    "keywords": "{{meta_keywords}}"
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_title}}</title>
+    <meta name="description" content="{{meta_description}}">
+    <meta name="keywords" content="{{meta_keywords}}">
+    <meta name="author" content="A.A.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{current_url}}">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="google-site-verification" content="7SdDojOxRb-x5eO2xdJ2DfkcZoTcoOkvhGf2mIdBytg" />
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="container">
-    <header class="header">
-      <pre class="ascii-art">
-██╗  ██╗███╗   ██╗██╗   ██╗████████╗██╗  ██╗
-██║ ██╔╝████╗  ██║██║   ██║╚══██╔══╝██║  ██║
-█████╔╝ ██╔██╗ ██║██║   ██║   ██║   ███████║
-██╔═██╗ ██║╚██╗██║██║   ██║   ██║   ██╔══██║
-██║  ██╗██║ ╚████║╚██████╔╝   ██║   ██║  ██║
-╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝
-      </pre>
-      <h1 class="title">{{page_title}}</h1>
-      <nav>
-        <a href="/" class="nav-link">← Back to Server Home</a>
-      </nav>
-      {{> blog-nav}}
-    </header>
-    <main class="content">
-      <section class="tribute-section">
-        <h2 class="section-title">Summary</h2>
-        <div class="message">{{summary_html}}</div>
-      </section>
-      <section class="tribute-section">
-        <div class="message">{{article_html}}</div>
-      </section>
-    </main>
-    {{> footer}}
-  </div>
-  <div class="floating-symbol" style="top: 10%; left: 10%;">∑</div>
-  <div class="floating-symbol" style="top: 80%; right: 15%;">∫</div>
-  <div class="floating-symbol" style="top: 40%; left: 85%;">π</div>
-  <div class="floating-symbol" style="top: 60%; left: 5%;">∞</div>
-  <script defer src="js/scripts.js"></script>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <a href="/" class="site-title">Knuth Platform</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="/sudoku_solver.html" class="nav-link">Sudoku Solver</a></li>
+                    <li class="nav-item"><a href="/knuth.html" class="nav-link">About Knuth</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="social-links">
+                        <a href="https://github.com/ane1990" class="social-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="content-wrapper">
+                <header class="page-header">
+                    <h1 class="page-title">{{page_title}}</h1>
+                    <p class="page-subtitle">{{publish_date}}</p>
+                </header>
+
+                <div class="content">
+                    <div class="summary">
+                        {{summary_html}}
+                    </div>
+                    <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--color-border);">
+                    {{article_html}}
+                </div>
+
+                {{> footer}}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-nav-toggle');
+            if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== toggle) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
-
-

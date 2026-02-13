@@ -132,11 +132,9 @@ async function build() {
   // Get the 3 most recent blog posts for the footer
   const recentBlogPosts = blogPosts.slice(0, 3);
   const recentBlogPostsHtml = recentBlogPosts.map(post => 
-    `<div class="footer-blog-post">
-      <a href="/${post.url}" class="footer-blog-post-title">${post.title}</a>
-      <div class="footer-blog-post-date">${post.publishDate}</div>
-      <div class="footer-blog-post-summary">${post.summary}</div>
-    </div>`
+    `<a href="/${post.url}" class="nav-blog-post">${post.title}
+      <span class="nav-blog-post-date">${post.publishDate}</span>
+    </a>`
   ).join('\n');
 
   // Process all files
@@ -160,7 +158,7 @@ async function build() {
     const blogNavPath = path.join(templatesDir, 'partials', 'blog-nav.html');
     if (await fs.pathExists(blogNavPath)) {
       let blogNav = await fs.readFile(blogNavPath, 'utf8');
-      blogNav = blogNav.replace(/<div class="nav-blog-posts">[^]*?<\/div>/, 
+      blogNav = blogNav.replace(/<div class="nav-blog-posts-list">[^]*?<\/div>/, 
         `${recentBlogPostsHtml}`);
       await fs.outputFile(blogNavPath, blogNav, 'utf8');
     }
@@ -341,7 +339,7 @@ function renderIndexSections(markdown) {
       }
       const descHtml = marked.parse(desc || '');
       return `
-        <div class="achievement">
+        <div class="achievement-card">
           <div class="achievement-title">${title || ''}</div>
           <div>${descHtml}</div>
         </div>`;
