@@ -3,7 +3,7 @@
 | description | Exploring why terminal-inspired design continues to captivate developers and how minimalism improves the reading experience. |
 | keywords | terminal, design, minimalism, web development, typography, user experience, developer tools |
 | summary | Terminal-inspired design has seen a renaissance in recent years. In this article, we explore the principles behind this aesthetic and why it resonates with developers worldwide. |
-| publish_date | 2025-02-13 |
+| publish_date | 2026-02-13 |
 | current_url | 03-blog-terminal-aesthetics.html |
 | meta_description | Exploring why terminal-inspired design continues to captivate developers and how minimalism improves the reading experience. |
 | meta_keywords | terminal, design, minimalism, web development, typography, user experience, developer tools, console, cli |
@@ -46,4 +46,4 @@ The goal isn't to make everything look like a terminal—it's to take inspiratio
 
 ---
 
-*What terminal-inspired designs have caught your eye? Share your favorites in the comments.*
+*What terminal-inspired designs have caught your eye? Share your favorites info at knuth.li*

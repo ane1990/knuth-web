@@ -3,8 +3,14 @@
   const initialValues = (typeof window !== 'undefined' && window.__SUDOKU_INITIAL__) || {};
 
   function createBoard() {
-    const board = document.getElementById('sudoku-board');
-    if (!board) return;
+    const container = document.getElementById('sudoku-container');
+    if (!container) return;
+    
+    const table = document.createElement('table');
+    table.id = 'sudoku-board';
+    container.appendChild(table);
+    
+    const board = table;
     for (let i = 0; i < 9; i++) {
       const row = document.createElement('tr');
       for (let j = 0; j < 9; j++) {
