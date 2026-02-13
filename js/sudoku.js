@@ -125,6 +125,13 @@
   window.initSudoku = initSudoku;
   window.solveSudoku = solveSudoku;
   window.resetSudoku = resetSudoku;
+
+  // Auto-initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSudoku);
+  } else {
+    initSudoku();
+  }
 })();
 
 
